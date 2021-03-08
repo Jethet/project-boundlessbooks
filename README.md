@@ -2,6 +2,8 @@
 
 *under construction*  
 
+![MyLibrary](https://github.com/Jethet/project-boundlessbooks/blob/master/library.jpg)
+
 For some time, I have been searching for a way to keep an inventory of my books. A few times, I bought a book and it turned out I had the book but I forgot that I had it already, or I had it in another language.
 
 I tried a few library apps but so far, nothing worked the way I wanted it: simple. Just author, title and language.
