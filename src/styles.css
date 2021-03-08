@@ -1,0 +1,39 @@
+.App {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.book-overview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid green;
+}
+
+.contact-card {
+  display: flex;
+  padding: 10px;
+  color: #ffffff;
+  background-color: rgb(74, 184, 235);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 10px 10px 25px -16px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  min-width: 75%;
+  /* max-width: 75%; */
+  max-height: 125px;
+  margin-bottom: 10px;
+  /* border: 1px solid blue; */
+}
+
+.contact-card p {
+  margin-left: 15px;
+  margin-top: 0;
+}
+
+.card-button {
+  margin-left:125px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
