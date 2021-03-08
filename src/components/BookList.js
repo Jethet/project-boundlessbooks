@@ -1,15 +1,15 @@
 import React from "react";
-import BookCard from "./BookCard";
 import { useState, useEffect } from "react";
+import BookCard from "./BookCard";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("https://example.com")
+    fetch("booksData.json")
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setBooks(data.results);
       })
       .catch((error) => console.log(error));
@@ -19,9 +19,7 @@ const BookList = () => {
     <div>
       <div className="book-overview">
         {books.map((book) => (
-          <BookCard
-            
-          />
+          <BookCard author={book.author} title={book.title} language={book.language} />
         ))}
       </div>
     </div>

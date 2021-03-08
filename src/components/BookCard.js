@@ -1,14 +1,13 @@
 import React from "react";
-import { useState } from "react";
 
 const BookCard = (props) => {
-  // hook to show the age of a contact when button is clicked
-
   return (
     <div className="book-card">
-      <img src="#" alt=""/>
+      {/* <img src="#" alt=""/> */}
       <div className="book-details">
-        
+        <p>Author: {props.author}</p>
+        <p>Title: {props.title}</p>
+        <p>Language: {props.language}</p>
       </div>
     </div>
   );
