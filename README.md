@@ -2,7 +2,7 @@
 
 *under construction*  
 
-<img src="http://github.com/Jethet/project-boundlessbooks/blob/master/library.jpg" width="200" height="200" />
+<img src="/library.jpg" width="300" />
 
 
 For some time, I have been searching for a way to keep an inventory of my books. A few times, I bought a book and it turned out I had the book but I forgot that I had it already, or I had it in another language.
