@@ -24,7 +24,7 @@ In the next stage of building the BoundlessBooks app, the goal is to add functio
 * the user can create a profile
 * the user can log in and log out
 
-Going for the ambitious level, the functionality of scanning the ISBN code of books and adding (part of) that information to the database.  
+Going for the ambitious level, it would be great to add the functionality of scanning the ISBN code of books and adding (part of) that information to the database. Dream on ... or maybe?  
 
 **Technology used:**  
 * HTML/CSS
