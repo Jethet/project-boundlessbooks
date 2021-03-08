@@ -2,7 +2,7 @@
 
 *under construction*  
 
-![MyLibrary](https://github.com/Jethet/project-boundlessbooks/blob/master/library.jpg | width=100)
+![MyLibrary](https://github.com/Jethet/project-boundlessbooks/blob/master/library.jpg=100)
 
 For some time, I have been searching for a way to keep an inventory of my books. A few times, I bought a book and it turned out I had the book but I forgot that I had it already, or I had it in another language.
 
