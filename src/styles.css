@@ -11,29 +11,30 @@
   border: 1px solid green;
 }
 
-.contact-card {
+.book-card {
   display: flex;
-  padding: 10px;
+  justify-content: space-between;
+  /* padding: 10px; */
+  margin-bottom: 10px;
   color: #ffffff;
   background-color: rgb(74, 184, 235);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
   box-shadow: 10px 10px 25px -16px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
-  min-width: 75%;
-  /* max-width: 75%; */
-  max-height: 125px;
-  margin-bottom: 10px;
-  /* border: 1px solid blue; */
+  width: 75%;
+  height: 170px;
 }
 
-.contact-card p {
-  margin-left: 15px;
-  margin-top: 0;
+.book-details {
+  font-size: 18px;
+  width: 80%;
+  margin-left: 10px;
 }
 
-.card-button {
-  margin-left:125px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  border-radius: 10px;
+.book-cover {
+  margin:10px 15px 10px 10px;
+  width: 20%;
+  background: url(./bookCover.png);
+  color: darkslategray;
+  border-radius: 2px;
 }
