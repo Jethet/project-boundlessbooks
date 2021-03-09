@@ -5,9 +5,9 @@ const BookCard = (props) => {
     <div className="book-card">
       {/* <img src="#" alt=""/> */}
       <div className="book-details">
-        <p>Author: {props.author}</p>
-        <p>Title: {props.title}</p>
-        <p>Language: {props.language}</p>
+        <p>Author: {props.item.author}</p>
+        <p>Title: {props.item.title}</p>
+        <p>Language: {props.item.language}</p>
       </div>
     </div>
   );

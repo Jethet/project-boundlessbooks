@@ -1,79 +1,77 @@
-{
-  "booksData": [
-    {
-      "author": "Andrzej Sapkowski",
-      "title": "Tales of the Witcher",
-      "language": "English"
-    },
-    {
-      "author": "Agatha Christie",
-      "title": "The Mysterious Affair at Styles",
-      "language": "English"
-    },
-    {
-      "author": "Blake Pierce",
-      "title": "Riley Paige Mystery Bundle",
-      "language": "English"
-    },
-    {
-      "author": "Cullen Bunn",
-      "title": "Deadpool Kills the Marvel Universe",
-      "language": "English"
-    },
-    {
-      "author": "Agatha Christie",
-      "title": "The Red Signal",
-      "language": "English"
-    },
-    {
-      "author": "Robert Jordan",
-      "title": "Crossroads of Twilight",
-      "language": "English"
-    },
-    {
-      "author": "Thom Zahler",
-      "title": "Friendship is Magic",
-      "language": "English"
-    },
-    {
-      "author": "Michiel van der Plas",
-      "title": "Getuige in Munchen",
-      "language": "Dutch"
-    },
-    {
-      "author": "Tessa de Loo",
-      "title": "Het Rookoffer",
-      "language": "Dutch"
-    },
-    {
-      "author": "Midas Dekkers",
-      "title": "De Kikvors",
-      "language": "Dutch"
-    },
-    {
-      "author": "Patrick Suskind",
-      "title": "Das Parfum",
-      "language": "German"
-    },
-    {
-      "author": "Thomas Mann",
-      "title": "Kleiner Mann was nun?",
-      "language": "German"
-    },
-    {
-      "author": "Patrick Suskind",
-      "title": "Das Parfum",
-      "language": "German"
-    },
-    {
-      "author": "Agatha Christie",
-      "title": "The Mysterious Affair at Styles",
-      "language": "English"
-    },
-    {
-      "author": "Douglas Adams",
-      "title": "The Hitchhiker's Guide to the Galaxy",
-      "language": "English"
-    }
-  ]
-}
+[
+  {
+    "author": "Andrzej Sapkowski",
+    "title": "Tales of the Witcher",
+    "language": "English"
+  },
+  {
+    "author": "Agatha Christie",
+    "title": "The Mysterious Affair at Styles",
+    "language": "English"
+  },
+  {
+    "author": "Blake Pierce",
+    "title": "Riley Paige Mystery Bundle",
+    "language": "English"
+  },
+  {
+    "author": "Cullen Bunn",
+    "title": "Deadpool Kills the Marvel Universe",
+    "language": "English"
+  },
+  {
+    "author": "Agatha Christie",
+    "title": "The Red Signal",
+    "language": "English"
+  },
+  {
+    "author": "Robert Jordan",
+    "title": "Crossroads of Twilight",
+    "language": "English"
+  },
+  {
+    "author": "Thom Zahler",
+    "title": "Friendship is Magic",
+    "language": "English"
+  },
+  {
+    "author": "Michiel van der Plas",
+    "title": "Getuige in Munchen",
+    "language": "Dutch"
+  },
+  {
+    "author": "Tessa de Loo",
+    "title": "Het Rookoffer",
+    "language": "Dutch"
+  },
+  {
+    "author": "Midas Dekkers",
+    "title": "De Kikvors",
+    "language": "Dutch"
+  },
+  {
+    "author": "Patrick Suskind",
+    "title": "Das Parfum",
+    "language": "German"
+  },
+  {
+    "author": "Thomas Mann",
+    "title": "Kleiner Mann was nun?",
+    "language": "German"
+  },
+  {
+    "author": "Patrick Suskind",
+    "title": "Das Parfum",
+    "language": "German"
+  },
+  {
+    "author": "Agatha Christie",
+    "title": "The Mysterious Affair at Styles",
+    "language": "English"
+  },
+  {
+    "author": "Douglas Adams",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "language": "English"
+  }
+]
