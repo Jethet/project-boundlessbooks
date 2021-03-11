@@ -1,4 +1,5 @@
 const express = require("express")
+const router = express.Router()
 const { Pool } = require("pg")
 
 const pool = new Pool({
@@ -9,3 +10,5 @@ const pool = new Pool({
   port: 5432,
 });
 
+
+module.exports = router;
