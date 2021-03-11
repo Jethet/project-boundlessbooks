@@ -29,6 +29,10 @@
   margin-left: 10px;
 }
 
+.hidden-id {
+  display: none;
+}
+
 .book-cover {
   margin: 10px 15px 10px 10px;
   width: 20%;
@@ -45,6 +49,7 @@
 @media only screen and (min-width: 530px) {
   .book-card {
     width: 500px;
+    height: 190px;
   }
 
   .book-details {
