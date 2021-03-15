@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import BookCard from "./BookCard";
 
-const BookList = () => {
+const BookOverview = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -27,4 +27,4 @@ const BookList = () => {
   );
 };
 
-export default BookList;
+export default BookOverview;
