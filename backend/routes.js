@@ -1,5 +1,5 @@
 const express = require("express");
-const Router = express.Router();
+const router = express.Router();
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -10,36 +10,41 @@ const pool = new Pool({
   port: 5432,
 });
 
-Router.route("/")
-  .all((req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
-    next();
-  })
+// define the home route
+router.get("/", function (req, res) {
+  res.send("This is the homepage");
+});
 
-  .get("/overview", (req, res, next) => {
-    pool
+router.get("/overview", (req, res) => {
+  pool
     .query("SELECT * FROM book_cards;")
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
-  })
+});
 
-  .post((req, res, next) => {
-    res.send(
-      "When a POST request is made, then this " + "is the response sent to the client!"
-    );
-  })
+router.get("/search", (req, res) => {
+  // pool
+  //   .query("SELECT * FROM book_cards;")
+  //   .then((result) => res.json(result.rows))
+  //   .catch((e) => console.error(e));
+});
 
-  .put((req, res, next) => {
-    res.send(
-      "When a PUT request is made, then this " + "is the response sent to the client!"
-    );
-  })
+router.post((req, res) => {
+  res.send(
+    "When a POST request is made, then this " + "is the response sent to the client!"
+  );
+});
 
-  .delete((req, res, next) => {
-    res.send(
-      "When a DELETE request is made, then this " + "is the response sent to the client!"
-    );
-  });
+router.put((req, res) => {
+  res.send(
+    "When a PUT request is made, then this " + "is the response sent to the client!"
+  );
+});
 
-module.exports = Router;
+router.delete((req, res) => {
+  res.send(
+    "When a DELETE request is made, then this " + "is the response sent to the client!"
+  );
+});
+
+module.exports = router;
