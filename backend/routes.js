@@ -15,6 +15,7 @@ router.get("/", function (req, res) {
   res.send("This is the homepage");
 });
 
+// get all books
 router.get("/overview", (req, res) => {
   pool
     .query("SELECT * FROM book_cards;")
@@ -22,12 +23,17 @@ router.get("/overview", (req, res) => {
     .catch((e) => console.error(e));
 });
 
-router.get("/search", (req, res) => {
-  // pool
-  //   .query("SELECT * FROM book_cards;")
-  //   .then((result) => res.json(result.rows))
-  //   .catch((e) => console.error(e));
+// get book by author
+router.get("/author/:name", (req, res) => {
+  const authorName = req.query.name
+
+  pool
+    .query("SELECT * FROM authors WHERE author_name=$authorName;", [authorName])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
 });
+
+
 
 router.post((req, res) => {
   res.send(
