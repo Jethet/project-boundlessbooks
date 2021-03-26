@@ -15,42 +15,66 @@ router.get("/", function (req, res) {
   res.send("This is the homepage");
 });
 
-// get all books
-router.get("/overview", (req, res) => {
+// get all authors
+router.get("/authors", (req, res) => {
   pool
-    .query("SELECT * FROM book_cards;")
+    .query("SELECT * FROM authors;")
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 });
 
-// get book by author
-router.get("/author/:name", (req, res) => {
-  const authorName = req.query.name
-
+// get author by last name
+router.get("/author/last", (req, res) => {
+  const lastname = req.query.name;
   pool
-    .query("SELECT * FROM authors WHERE author_name=$authorName;", [authorName])
+    .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 });
 
-
-
-router.post((req, res) => {
-  res.send(
-    "When a POST request is made, then this " + "is the response sent to the client!"
-  );
+// get author by first name
+router.get("/author/first", (req, res) => {
+  const firstname = req.query.name;
+  
+  pool
+    .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
 });
 
+// get author by author id
+router.get("/authors/:id", (req, res) => {
+  const authorId = parseInt(req.params.id);
+  pool
+    .query("SELECT * FROM authors WHERE id=$1;", [authorId])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+});
+
+// add new author and book title
+router.post("/author/new", (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+
+  pool
+    .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [firstname, lastname])
+    .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
+    .catch((e) => console.error(e));
+});
+
+// edit author firstname/lastname/book title
 router.put((req, res) => {
-  res.send(
-    "When a PUT request is made, then this " + "is the response sent to the client!"
-  );
+  res.send("A PUT request is made.");
 });
 
-router.delete((req, res) => {
-  res.send(
-    "When a DELETE request is made, then this " + "is the response sent to the client!"
-  );
+// delete author
+router.delete("/authors/:id", (req, res) => {
+  const authorId = req.params.id;
+
+  pool
+    .query("DELETE FROM authors WHERE id = $1", [authorId])
+    .then(() => res.send(`Author with id ${authorId} has been deleted.`))
+    .catch((e) => console.error(e));
 });
 
 module.exports = router;
