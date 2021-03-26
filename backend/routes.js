@@ -55,7 +55,6 @@ router.get("/authors/:id", (req, res) => {
 router.post("/author/new", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
-
   pool
     .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [firstname, lastname])
     .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
@@ -63,14 +62,19 @@ router.post("/author/new", (req, res) => {
 });
 
 // edit author firstname/lastname/book title
-router.put((req, res) => {
-  res.send("A PUT request is made.");
+router.put("/author/:id", (req, res) => {
+  const authorId = parseInt(req.params.id)
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  pool
+  .query("UPDATE authors SET firstname=$1, lastname=$2 WHERE id=$3;", [firstname, lastname, authorId])
+  .then(() => res.send(`Author details have been updated: ${firstname} ${lastname}.`))
+  .catch((e) => console.error(e));
 });
 
 // delete author
 router.delete("/authors/:id", (req, res) => {
   const authorId = req.params.id;
-
   pool
     .query("DELETE FROM authors WHERE id = $1", [authorId])
     .then(() => res.send(`Author with id ${authorId} has been deleted.`))
