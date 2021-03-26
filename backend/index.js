@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const app = express();
 
-const PORT = 3001;
+const PORT = process.env.PORT;
 
 // middleware
 app.use(express.json());
@@ -14,4 +14,4 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => res.send("Hello world!"));
 
-app.listen(PORT, () => console.log("Server started on port 3001"));
+app.listen(PORT, () => console.log(`Server started listening on ${PORT}`));
