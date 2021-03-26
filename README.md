@@ -16,11 +16,10 @@ The idea is to create a simple app that saves information about the books I own 
 * the user can edit a book entry
 * the user can delete a book entry
 * the user can get an overview of the books
+* * the user can search for a book and view the results on the screen
+* the user can search for an author and view the results on the screen
 
 In the next stage of building the BoundlessBooks app, the goal is to add functionality:  
-
-* the user can search for a book and view the results on the screen
-* the user can search for an author and view the results on the screen
 * the user can create an account
 * the user can create a profile
 * the user can log in and log out
