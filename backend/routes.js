@@ -43,8 +43,8 @@ router.get("/author/first", (req, res) => {
 });
 
 // get author by author id
-router.get("/authors/:id", (req, res) => {
-  const authorId = parseInt(req.params.id);
+router.get("/author/:id", (req, res) => {
+  const authorId = req.params.id;
   pool
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
     .then((result) => res.json(result.rows))
@@ -73,7 +73,7 @@ router.put("/author/:id", (req, res) => {
 });
 
 // delete author
-router.delete("/authors/:id", (req, res) => {
+router.delete("/author/:id", (req, res) => {
   const authorId = req.params.id;
   pool
     .query("DELETE FROM authors WHERE id = $1", [authorId])
