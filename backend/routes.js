@@ -25,7 +25,7 @@ router.get("/authors", (req, res) => {
 });
 
 // get author by last name
-router.get("/author/last", (req, res) => {
+router.get("/authors/last", (req, res) => {
   const lastname = req.query.name;
   pool
     .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
@@ -34,7 +34,7 @@ router.get("/author/last", (req, res) => {
 });
 
 // get author by first name
-router.get("/author/first", (req, res) => {
+router.get("/authors/first", (req, res) => {
   const firstname = req.query.name;
   
   pool
@@ -44,7 +44,7 @@ router.get("/author/first", (req, res) => {
 });
 
 // get author by author id
-router.get("/author/:id", (req, res) => {
+router.get("/authors/:id", (req, res) => {
   const authorId = req.params.id;
   pool
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
@@ -52,8 +52,8 @@ router.get("/author/:id", (req, res) => {
     .catch((e) => console.error(e));
 });
 
-// add new author and book title
-router.post("/author/new", (req, res) => {
+// add new author
+router.post("/authors/new", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   pool
@@ -62,8 +62,8 @@ router.post("/author/new", (req, res) => {
     .catch((e) => console.error(e));
 });
 
-// edit author firstname/lastname/book title
-router.put("/author/:id", (req, res) => {
+// edit author firstname/lastname
+router.put("/authors/:id", (req, res) => {
   const authorId = parseInt(req.params.id)
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
@@ -74,7 +74,7 @@ router.put("/author/:id", (req, res) => {
 });
 
 // delete author
-router.delete("/author/:id", (req, res) => {
+router.delete("/authors/:id", (req, res) => {
   const authorId = req.params.id;
   pool
     .query("DELETE FROM authors WHERE id = $1", [authorId])
@@ -92,20 +92,20 @@ router.get("/books", (req, res) => {
 });
 
 // get book by word in title
-router.get("/book/title", (req, res) => {
-  const titlePart = req.query.title;
-  pool
-    .query("SELECT * FROM books WHERE title LIKE $1;", [titlePart])
-    .then((result) => res.json(result.rows))
-    .catch((e) => console.error(e));
-});
+// router.get("/book/title", (req, res) => {
+//   const titlePart = req.query.title;
+//   pool
+//     .query("SELECT * FROM books WHERE title LIKE $1;", [titlePart])
+//     .then((result) => res.json(result.rows))
+//     .catch((e) => console.error(e));
+// });
 
 
 // get book by book id
-router.get("/book/:id", (req, res) => {
+router.get("/books/:id", (req, res) => {
   const bookId = req.params.id;
   pool
-    .query("SELECT * FROM authors WHERE id=$1;", [authorId])
+    .query("SELECT * FROM books WHERE id=$1;", [bookId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 });
