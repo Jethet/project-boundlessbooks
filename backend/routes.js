@@ -67,8 +67,10 @@ router.put("/authors/:id", (req, res) => {
   const authorId = parseInt(req.params.id)
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
+  // The bookId is not added in the database:
+  const bookId = req.params.book_id
   pool
-  .query("UPDATE authors SET firstname=$1, lastname=$2 WHERE id=$3;", [firstname, lastname, authorId])
+  .query("UPDATE authors SET firstname=$1, lastname=$2, book_id=$3 WHERE id=$4;", [firstname, lastname, bookId, authorId])
   .then(() => res.send(`Author details have been updated: ${firstname} ${lastname}.`))
   .catch((e) => console.error(e));
 });
@@ -92,7 +94,7 @@ router.get("/books", (req, res) => {
 });
 
 // get book by word in title
-// router.get("/book/title", (req, res) => {
+// router.get("/books/title", (req, res) => {
 //   const titlePart = req.query.title;
 //   pool
 //     .query("SELECT * FROM books WHERE title LIKE $1;", [titlePart])
@@ -110,33 +112,37 @@ router.get("/books/:id", (req, res) => {
     .catch((e) => console.error(e));
 });
 
-// add new author and book title
-router.post("/author/new", (req, res) => {
-  const firstname = req.body.firstname;
-  const lastname = req.body.lastname;
+// add new book title
+router.post("/books/new", (req, res) => {
+  const title = req.body.title;
+  const language = req.body.language;
+  // the authorId returns error NaN
+  const authorId = req.params.author_id
   pool
-    .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [firstname, lastname])
-    .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
+    .query("INSERT INTO books (title, language, author_id) VALUES ($1, $2, $3);", [title, language, authorId])
+    .then(() => res.send(`New book with title ${title} has been created.`))
     .catch((e) => console.error(e));
 });
 
 // edit author firstname/lastname/book title
-router.put("/author/:id", (req, res) => {
-  const authorId = parseInt(req.params.id)
-  const firstname = req.body.firstname;
-  const lastname = req.body.lastname;
+router.put("/books/:id", (req, res) => {
+  const bookId = parseInt(req.params.id)
+  const title = req.body.title;
+  const language = req.body.language;
+  // cannot add author_id: error NaN
+  const authorId = parseInt(req.params.author)
   pool
-  .query("UPDATE authors SET firstname=$1, lastname=$2 WHERE id=$3;", [firstname, lastname, authorId])
-  .then(() => res.send(`Author details have been updated: ${firstname} ${lastname}.`))
+  .query("UPDATE books SET title=$1, language=$2, author_id=$3 WHERE id=$4;", [title, language, authorId, bookId])
+  .then(() => res.send(`Book details for ${title} have been updated.`))
   .catch((e) => console.error(e));
 });
 
 // delete author
-router.delete("/author/:id", (req, res) => {
-  const authorId = req.params.id;
+router.delete("/books/:id", (req, res) => {
+  const bookId = req.params.id;
   pool
-    .query("DELETE FROM authors WHERE id = $1", [authorId])
-    .then(() => res.send(`Author with id ${authorId} has been deleted.`))
+    .query("DELETE FROM books WHERE id = $1", [bookId])
+    .then(() => res.send(`Book with id ${bookId} has been deleted.`))
     .catch((e) => console.error(e));
 });
 
