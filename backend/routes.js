@@ -52,6 +52,15 @@ router.get("/authors/:id", (req, res) => {
     .catch((e) => console.error(e));
 });
 
+// get author and their books by author id
+router.get("/authorbooks/:id", (req, res) => {
+  const authorId = req.params.id
+  pool
+  .query("SELECT authors.firstname, authors.lastname, books.title FROM authors, books WHERE authors.id=books.author_id AND authors.id=$1;", [authorId])
+  .then((result) => res.json(result.rows))
+  .catch((e) => console.error(e));
+})
+
 // add new author
 router.post("/authors/new", (req, res) => {
   const firstname = req.body.firstname;
@@ -116,8 +125,8 @@ router.get("/books/:id", (req, res) => {
 router.post("/books/new", (req, res) => {
   const title = req.body.title;
   const language = req.body.language;
-  // the authorId returns error NaN
-  const authorId = req.params.author_id
+  // the authorId is not added to the books table
+  const authorId = req.body.author_id
   pool
     .query("INSERT INTO books (title, language, author_id) VALUES ($1, $2, $3);", [title, language, authorId])
     .then(() => res.send(`New book with title ${title} has been created.`))
@@ -130,9 +139,9 @@ router.put("/books/:id", (req, res) => {
   const title = req.body.title;
   const language = req.body.language;
   // cannot add author_id: error NaN
-  const authorId = parseInt(req.params.author)
+  // const authorId = parseInt(req.params.author)
   pool
-  .query("UPDATE books SET title=$1, language=$2, author_id=$3 WHERE id=$4;", [title, language, authorId, bookId])
+  .query("UPDATE books SET title=$1, language=$2 WHERE id=$3;", [title, language, bookId])
   .then(() => res.send(`Book details for ${title} have been updated.`))
   .catch((e) => console.error(e));
 });
