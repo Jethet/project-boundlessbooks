@@ -126,14 +126,14 @@ router.post("/books/new", (req, res) => {
   const title = req.body.title;
   const language = req.body.language;
   // the authorId is not added to the books table
-  const authorId = req.body.author_id
+  // const authorId = req.body.author_id
   pool
-    .query("INSERT INTO books (title, language, author_id) VALUES ($1, $2, $3);", [title, language, authorId])
+    .query("INSERT INTO books (title, language) VALUES ($1, $2);", [title, language])
     .then(() => res.send(`New book with title ${title} has been created.`))
     .catch((e) => console.error(e));
 });
 
-// edit author firstname/lastname/book title
+// edit author firstname/lastname/booktitle
 router.put("/books/:id", (req, res) => {
   const bookId = parseInt(req.params.id)
   const title = req.body.title;
@@ -146,7 +146,7 @@ router.put("/books/:id", (req, res) => {
   .catch((e) => console.error(e));
 });
 
-// delete author
+// delete book
 router.delete("/books/:id", (req, res) => {
   const bookId = req.params.id;
   pool
