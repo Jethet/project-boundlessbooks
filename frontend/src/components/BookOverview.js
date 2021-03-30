@@ -6,7 +6,7 @@ const BookOverview = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("booksData.json")
+    fetch("/authors")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

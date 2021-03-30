@@ -5,12 +5,12 @@ const BookCard = (props) => {
     <div className="book-card">
       {/* <img src="#" alt=""/> */}
       <div className="book-details">
-        <p className="hidden-id">Id: {props.item.id}</p>
+        {/* <p className="hidden-id">Id: {props.item.id}</p> */}
         <p>
           <strong>Author: {props.item.author}</strong>
         </p>
-        <p>Title: {props.item.title}</p>
-        <p>Language: {props.item.language}</p>
+        {/* <p>Title: {props.item.title}</p>
+        <p>Language: {props.item.language}</p> */}
       </div>
       <div className="book-cover">
         <img src="#" alt="Book cover" />
