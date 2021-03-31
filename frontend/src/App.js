@@ -3,7 +3,8 @@ import BookOverview from "./components/BookOverview";
 
 function App() {
   return (
-    <div >
+    <div>
+      <StartPage />
       <BookOverview />
     </div>
   );

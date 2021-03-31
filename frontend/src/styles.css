@@ -4,6 +4,12 @@
   justify-content: center;
 }
 
+.startpage {
+  background: url(/frontend/library.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed, fixed;
+}
+
 .book-overview {
   display: flex;
   flex-direction: column;
