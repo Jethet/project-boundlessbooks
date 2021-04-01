@@ -5,9 +5,21 @@
 }
 
 .startpage {
-  background: url(/frontend/library.jpg);
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  background: url("./library.jpg");
+  height: 100vh;
+  width: auto;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed, fixed;
+  overflow: auto;
+  background-attachment: fixed;
+}
+
+.startpage h1 {
+  color: whitesmoke;
 }
 
 .book-overview {
@@ -42,7 +54,7 @@
 .book-cover {
   margin: 10px 15px 10px 10px;
   width: 20%;
-  background: url(./bookCover.png);
+  background: url("./bookCover.png");
   color: darkslategray;
   border-radius: 2px;
 }
