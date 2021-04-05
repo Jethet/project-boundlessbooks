@@ -33,3 +33,6 @@ Going for the ambitious level, it would be great to add the functionality of sca
 * NodeJS
 * Express
 * PostgreSQL
+
+**Deployment:**  
+The app is deployed on Heroku with a Heroku Postgres database.
