@@ -4,8 +4,8 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   user: process.env.PGUSER,
-  host: "ec2-54-196-111-158.compute-1.amazonaws.com",
-  database: "d8eorehp93p8bu",
+  host: "localhost",
+  database: "boundless_books",
   password: process.env.PGPASSWORD,
   port: 5432,
 });
@@ -36,7 +36,7 @@ router.get("/authors/last", (req, res) => {
 // get author by first name
 router.get("/authors/first", (req, res) => {
   const firstname = req.query.name;
-  
+
   pool
     .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
     .then((result) => res.json(result.rows))
@@ -54,34 +54,45 @@ router.get("/authors/:id", (req, res) => {
 
 // get author and their books by author id
 router.get("/authorbooks/:id", (req, res) => {
-  const authorId = req.params.id
+  const authorId = req.params.id;
   pool
-  .query("SELECT authors.firstname, authors.lastname, books.title FROM authors, books WHERE authors.id=books.author_id AND authors.id=$1;", [authorId])
-  .then((result) => res.json(result.rows))
-  .catch((e) => console.error(e));
-})
+    .query(
+      "SELECT authors.firstname, authors.lastname, books.title FROM authors, books WHERE authors.id=books.author_id AND authors.id=$1;",
+      [authorId]
+    )
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+});
 
 // add new author
 router.post("/authors/new", (req, res) => {
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   pool
-    .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [firstname, lastname])
+    .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [
+      firstname,
+      lastname,
+    ])
     .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
     .catch((e) => console.error(e));
 });
 
 // edit author firstname/lastname
 router.put("/authors/:id", (req, res) => {
-  const authorId = parseInt(req.params.id)
+  const authorId = parseInt(req.params.id);
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
   // The bookId is not added in the database:
-  const bookId = req.params.book_id
+  const bookId = req.params.book_id;
   pool
-  .query("UPDATE authors SET firstname=$1, lastname=$2, book_id=$3 WHERE id=$4;", [firstname, lastname, bookId, authorId])
-  .then(() => res.send(`Author details have been updated: ${firstname} ${lastname}.`))
-  .catch((e) => console.error(e));
+    .query("UPDATE authors SET firstname=$1, lastname=$2, book_id=$3 WHERE id=$4;", [
+      firstname,
+      lastname,
+      bookId,
+      authorId,
+    ])
+    .then(() => res.send(`Author details have been updated: ${firstname} ${lastname}.`))
+    .catch((e) => console.error(e));
 });
 
 // delete author
@@ -111,7 +122,6 @@ router.get("/books", (req, res) => {
 //     .catch((e) => console.error(e));
 // });
 
-
 // get book by book id
 router.get("/books/:id", (req, res) => {
   const bookId = req.params.id;
@@ -135,15 +145,21 @@ router.post("/books/new", (req, res) => {
 
 // edit author firstname/lastname/booktitle
 router.put("/books/:id", (req, res) => {
-  const bookId = parseInt(req.params.id)
+  const bookId = parseInt(req.params.id);
+
   const title = req.body.title;
   const language = req.body.language;
   // cannot add author_id: error NaN
-  // const authorId = parseInt(req.params.author)
+  const authorId = parseInt(req.body.authorId);
   pool
-  .query("UPDATE books SET title=$1, language=$2 WHERE id=$3;", [title, language, bookId])
-  .then(() => res.send(`Book details for ${title} have been updated.`))
-  .catch((e) => console.error(e));
+    .query("UPDATE books SET title=$1, language=$2, author_id=$3 WHERE id=$4;", [
+      title,
+      language,
+      authorId,
+      bookId,
+    ])
+    .then(() => res.send(`Book details for ${title} have been updated.`))
+    .catch((e) => console.error(e));
 });
 
 // delete book

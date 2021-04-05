@@ -31,13 +31,18 @@ router.get("/authors", (req, res1) => {
 });
 
 // get author by last name
-// router.get("/authors/last", (req, res) => {
-//   const lastname = req.query.name;
-//   pool
-//     .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
-//     .then((result) => res.json(result.rows))
-//     .catch((e) => console.error(e));
-// });
+router.get("/authors/last", (request, result) => {
+  const lastname = request.query.name;
+  client.query("SELECT * FROM authors WHERE lastname=$1;", [lastname], (err, res) => {
+    if (err) throw err;
+    let result = "";
+    for (let row of res.rows) {
+      result = result + JSON.stringify(row);
+    }
+    client.end();
+    result.send(result);
+  });
+});
 
 // // get author by first name
 // router.get("/authors/first", (req, res) => {
@@ -70,18 +75,18 @@ router.get("/authors", (req, res1) => {
 //     .catch((e) => console.error(e));
 // });
 
-// // add new author
-// router.post("/authors/new", (req, res) => {
-//   const firstname = req.body.firstname;
-//   const lastname = req.body.lastname;
-//   pool
-//     .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [
-//       firstname,
-//       lastname,
-//     ])
-//     .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
-//     .catch((e) => console.error(e));
-// });
+// add new author
+router.post("/authors/new", (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  pool
+    .query("INSERT INTO authors (firstname, lastname) VALUES ($1, $2);", [
+      firstname,
+      lastname,
+    ])
+    .then(() => res.send(`New item ${firstname} ${lastname} has been created.`))
+    .catch((e) => console.error(e));
+});
 
 // // edit author firstname/lastname
 // router.put("/authors/:id", (req, res) => {
@@ -137,17 +142,17 @@ router.get("/authors", (req, res1) => {
 //     .catch((e) => console.error(e));
 // });
 
-// // add new book title
-// router.post("/books/new", (req, res) => {
-//   const title = req.body.title;
-//   const language = req.body.language;
-//   // the authorId is not added to the books table
-//   // const authorId = req.body.author_id
-//   pool
-//     .query("INSERT INTO books (title, language) VALUES ($1, $2);", [title, language])
-//     .then(() => res.send(`New book with title ${title} has been created.`))
-//     .catch((e) => console.error(e));
-// });
+// add new book title
+router.post("/books/new", (req, res) => {
+  const title = req.body.title;
+  const language = req.body.language;
+  // the authorId is not added to the books table
+  // const authorId = req.body.author_id
+  pool
+    .query("INSERT INTO books (title, language) VALUES ($1, $2);", [title, language])
+    .then(() => res.send(`New book with title ${title} has been created.`))
+    .catch((e) => console.error(e));
+});
 
 // // edit author firstname/lastname/booktitle
 // router.put("/books/:id", (req, res) => {
