@@ -4,8 +4,8 @@ const { Pool } = require("pg");
 
 const pool = new Pool({
   user: process.env.PGUSER,
-  host: "localhost",
-  database: "boundless_books",
+  host: "ec2-54-196-111-158.compute-1.amazonaws.com",
+  database: "d8eorehp93p8bu",
   password: process.env.PGPASSWORD,
   port: 5432,
 });
