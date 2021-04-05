@@ -1,6 +1,7 @@
 import React from "react";
 
 const BookCard = (props) => {
+  
   return (
     <div className="book-card">
       {/* <img src="#" alt=""/> */}

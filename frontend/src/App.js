@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <StartPage />
-      <BookOverview />
+      {/* <BookOverview /> */}
     </div>
   );
 }
