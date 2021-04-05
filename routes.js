@@ -19,10 +19,10 @@ router.get("/", function (req, res) {
 // AUTHORS
 // get all authors
 router.get("/authors", (req, res) => {
-  console.log("whatever");
   console.log(process.env.DATABASE_URL);
   
-  
+  res.send("whatever");
+
   
   // client.query("SELECT * FROM authors;", (err, res) => {
   //   if (err) throw err;
