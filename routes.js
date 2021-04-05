@@ -19,14 +19,14 @@ router.get("/", function (req, res) {
 // AUTHORS
 // get all authors
 router.get("/authors", (req, res) => {
+  console.log(process.env.DATABASE_URL);
+  
   client.query("SELECT * FROM authors;", (err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
       console.log(JSON.stringify(row));
     }
     client.end();
-    // .then((result) => res.json(result.rows))
-    // .catch((e) => console.error(e));
   });
 });
 
