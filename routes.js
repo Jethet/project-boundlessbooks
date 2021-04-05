@@ -40,8 +40,8 @@ router.get("/authors/last", (request, result) => {
       result = result + JSON.stringify(row);
     }
     client.end();
-    result.send(result);
   });
+  result.send(result);
 });
 
 // // get author by first name
