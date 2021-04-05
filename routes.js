@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { Client } = require("pg");
+// const { Client } = require("pg");
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 
-client.connect();
+// client.connect();
 
 // define the home route
 router.get("/", function (req, res) {
@@ -19,7 +19,7 @@ router.get("/", function (req, res) {
 // AUTHORS
 // get all authors
 router.get("/authors", (req, res) => {
-  console.log( "whatever");
+  console.log("whatever");
   console.log(process.env.DATABASE_URL);
   
   
