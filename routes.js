@@ -18,13 +18,15 @@ router.get("/", function (req, res) {
 
 // AUTHORS
 // get all authors
-router.get("/authors", (req, res) => { 
+router.get("/authors", (req, res) => {
   client.query("SELECT * FROM authors;", (err, res) => {
     if (err) throw err;
+    let result = "";
     for (let row of res.rows) {
-      console.log(JSON.stringify(row));
+      result = result + JSON.stringify(row);
     }
     client.end();
+    res.send(result);
   });
 });
 
