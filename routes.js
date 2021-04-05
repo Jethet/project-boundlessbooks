@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
 
 // AUTHORS
 // get all authors
-router.get("/authors", (req, res) => {
+router.get("/authors", (req, res1) => {
   client.query("SELECT * FROM authors;", (err, res) => {
     if (err) throw err;
     let result = "";
@@ -26,7 +26,7 @@ router.get("/authors", (req, res) => {
       result = result + JSON.stringify(row);
     }
     client.end();
-    res.send(result);
+    res1.send(result);
   });
 });
 
