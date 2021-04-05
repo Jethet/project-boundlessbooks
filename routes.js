@@ -19,7 +19,7 @@ router.get("/", function (req, res) {
 // AUTHORS
 // get all authors
 router.get("/authors", (req, res) => {
-  console.log(process.env.DATABASE_URL);
+  // console.log(process.env.DATABASE_URL);
   
   res.send("whatever");
 
