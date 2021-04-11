@@ -18,17 +18,25 @@ router.get("/", function (req, res) {
 
 // AUTHORS
 // get all authors
-router.get("/authors", (req, res1) => {
-  client.query("SELECT * FROM authors;", (err, res) => {
-    if (err) throw err;
-    let result = "";
-    for (let row of res.rows) {
-      result = result + JSON.stringify(row);
-    }
-    client.end();
-    res1.send(result);
-  });
+router.get("/authors", (req, res) => {
+  client
+    .query("SELECT * FROM authors;")
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e))
+    client.end()
 });
+
+// router.get("/authors", (req, res1) => {
+//   client.query("SELECT * FROM authors;", (err, res) => {
+//     if (err) throw err;
+//     let result = "";
+//     for (let row of res.rows) {
+//       result = result + JSON.stringify(row);
+//     }
+//     client.end();
+//     res1.send(result);
+//   });
+// });
 
 // get author by last name
 router.get("/authors/last", (request, result) => {
