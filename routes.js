@@ -23,7 +23,7 @@ router.get("/authors", (req, res) => {
     .query("SELECT * FROM authors;")
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    client.end()
+    .then(() => client.end());
 });
 
 // router.get("/authors", (req, res1) => {
@@ -39,17 +39,13 @@ router.get("/authors", (req, res) => {
 // });
 
 // get author by last name
-router.get("/authors/last", (request, result) => {
-  const lastname = request.query.name;
-  client.query("SELECT * FROM authors WHERE lastname=$1;", [lastname], (err, res) => {
-    if (err) throw err;
-    let result = "";
-    for (let row of res.rows) {
-      result = result + JSON.stringify(row);
-    }
-    client.end();
-  });
-  result.send(result);
+router.get("/authors/last", (req, res) => {
+  const lastname = req.query.name;
+  client
+    .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e))
+    .then(() => client.end())
 });
 
 // // get author by first name
