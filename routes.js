@@ -49,14 +49,14 @@ router.get("/authors/last", (req, res) => {
 });
 
 // // get author by first name
-// router.get("/authors/first", (req, res) => {
-//   const firstname = req.query.name;
-
-//   pool
-//     .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
-//     .then((result) => res.json(result.rows))
-//     .catch((e) => console.error(e));
-// });
+router.get("/authors/first", (req, res) => {
+  const firstname = req.query.name;
+  client
+    .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e))
+    .then(() => client.end())
+});
 
 // // get author by author id
 // router.get("/authors/:id", (req, res) => {
