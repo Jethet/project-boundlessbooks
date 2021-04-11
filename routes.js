@@ -23,7 +23,7 @@ router.get("/authors", (req, res) => {
     .query("SELECT * FROM authors;")
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    .then(() => client.end());
+    // .then(() => client.end());
 });
 
 // router.get("/authors", (req, res1) => {
@@ -45,7 +45,7 @@ router.get("/authors/last", (req, res) => {
     .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    .then(() => client.end())
+    // .then(() => client.end())
 });
 
 // // get author by first name
@@ -55,7 +55,7 @@ router.get("/authors/first", (req, res) => {
     .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    .then(() => client.end())
+    // .then(() => client.end())
 });
 
 // // get author by author id
@@ -65,7 +65,7 @@ router.get("/authors/:id", (req, res) => {
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    .then(() => client.end())
+    // .then(() => client.end())
 });
 
 // // get author and their books by author id
