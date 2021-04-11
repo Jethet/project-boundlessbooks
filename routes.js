@@ -59,13 +59,14 @@ router.get("/authors/first", (req, res) => {
 });
 
 // // get author by author id
-// router.get("/authors/:id", (req, res) => {
-//   const authorId = req.params.id;
-//   pool
-//     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
-//     .then((result) => res.json(result.rows))
-//     .catch((e) => console.error(e));
-// });
+router.get("/authors/:id", (req, res) => {
+  const authorId = req.params.id;
+  client
+    .query("SELECT * FROM authors WHERE id=$1;", [authorId])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e))
+    .then(() => client.end())
+});
 
 // // get author and their books by author id
 // router.get("/authorbooks/:id", (req, res) => {
