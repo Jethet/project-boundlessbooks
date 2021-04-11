@@ -60,7 +60,7 @@ router.get("/authors/first", (req, res) => {
 
 // // get author by author id
 router.get("/authors/:id", (req, res) => {
-  const authorId = req.params.id;
+  const authorId = parseInt(req.params.id);
   client
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
     .then((result) => res.json(result.rows))
