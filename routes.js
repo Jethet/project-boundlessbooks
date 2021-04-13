@@ -131,13 +131,13 @@ router.get("/books", (req, res) => {
 });
 
 // get book by word in title
-// router.get("/books/title", (req, res) => {
-//   const titlePart = req.query.title;
-//   client
-//     .query("SELECT * FROM books WHERE title LIKE $1;", [titlePart])
-//     .then((result) => res.json(result.rows))
-//     .catch((e) => console.error(e));
-// });
+router.get("/books/title", (req, res) => {
+  const title = req.query.title;
+  client
+    .query("SELECT * FROM books WHERE title LIKE $1;", [title])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+});
 
 // get book by book id
 router.get("/books/:id", (req, res) => {
