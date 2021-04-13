@@ -35,4 +35,4 @@ Going for the ambitious level, it would be great to add the functionality of sca
 * PostgreSQL
 
 **Deployment:**  
-The app is deployed on Heroku with a Heroku Postgres database.
+The app is deployed on Heroku with a Heroku Postgres database as add-on.
