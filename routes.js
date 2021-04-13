@@ -60,7 +60,8 @@ router.get("/authors/first", (req, res) => {
 
 // // get author by author id
 router.get("/authors/:id", (req, res) => {
-  const authorId = parseInt(req.params.id);
+  // const authorId = parseInt(req.params.id);
+  const authorId = req.params.id;
   client
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
     .then((result) => res.json(result.rows))
@@ -69,16 +70,16 @@ router.get("/authors/:id", (req, res) => {
 });
 
 // // get author and their books by author id
-// router.get("/authorbooks/:id", (req, res) => {
-//   const authorId = req.params.id;
-//   pool
-//     .query(
-//       "SELECT authors.firstname, authors.lastname, books.title FROM authors, books WHERE authors.id=books.author_id AND authors.id=$1;",
-//       [authorId]
-//     )
-//     .then((result) => res.json(result.rows))
-//     .catch((e) => console.error(e));
-// });
+router.get("/authorbooks/:id", (req, res) => {
+  const authorId = req.params.id;
+  client
+    .query(
+      "SELECT authors.firstname, authors.lastname, books.title FROM authors, books WHERE authors.id=books.author_id AND authors.id=$1;",
+      [authorId]
+    )
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e));
+});
 
 // add new author
 router.post("/authors/new", (req, res) => {
