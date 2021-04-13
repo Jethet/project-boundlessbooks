@@ -7,4 +7,4 @@ const client = new Client({
   },
 });
 
-module.exports = connector
+module.exports = client
