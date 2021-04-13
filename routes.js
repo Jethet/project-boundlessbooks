@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const client = require("connector.js")
+const client = require("connector")
 
 // Change all queries: add client.connect and client.end
 
