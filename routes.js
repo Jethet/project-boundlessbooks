@@ -9,7 +9,6 @@ const client = new Client({
   },
 });
 
-client.connect();
 
 // define the home route
 router.get("/", function (req, res) {
@@ -19,11 +18,12 @@ router.get("/", function (req, res) {
 // AUTHORS
 // get all authors
 router.get("/authors", (req, res) => {
+  client.connect()
   client
     .query("SELECT * FROM authors;")
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    // .then(() => client.end());
+    .then(() => client.end());
 });
 
 // router.get("/authors", (req, res1) => {
@@ -40,37 +40,41 @@ router.get("/authors", (req, res) => {
 
 // get author by last name
 router.get("/authors/last", (req, res) => {
+  client.connect()
   const lastname = req.query.name;
   client
     .query("SELECT * FROM authors WHERE lastname=$1;", [lastname])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    // .then(() => client.end())
+    .then(() => client.end())
 });
 
 // // get author by first name
 router.get("/authors/first", (req, res) => {
+  client.connect()
   const firstname = req.query.name;
   client
     .query("SELECT * FROM authors WHERE firstname=$1;", [firstname])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    // .then(() => client.end())
+    .then(() => client.end())
 });
 
 // // get author by author id
 router.get("/authors/:id", (req, res) => {
   // const authorId = parseInt(req.params.id);
+  client.connect()
   const authorId = req.params.id;
   client
     .query("SELECT * FROM authors WHERE id=$1;", [authorId])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
-    // .then(() => client.end())
+    .then(() => client.end())
 });
 
 // // get author and their books by author id
 router.get("/authorbooks/:id", (req, res) => {
+  client.connect()
   const authorId = req.params.id;
   client
     .query(
@@ -78,7 +82,8 @@ router.get("/authorbooks/:id", (req, res) => {
       [authorId]
     )
     .then((result) => res.json(result.rows))
-    .catch((e) => console.error(e));
+    .catch((e) => console.error(e))
+    .then(() => client.end())
 });
 
 // add new author
@@ -124,32 +129,40 @@ router.get("/authorbooks/:id", (req, res) => {
 // BOOKS
 // get all books
 router.get("/books", (req, res) => {
+  client.connect()
   client
     .query("SELECT * FROM books;")
     .then((result) => res.json(result.rows))
-    .catch((e) => console.error(e));
-});
-
-// get book by word in title
-router.get("/books/title", (req, res) => {
-  const title = req.query.title;
-  client
-    .query("SELECT * FROM books WHERE title LIKE $%1%;", [title])
-    .then((result) => res.json(result.rows))
-    .catch((e) => console.error(e));
+    .catch((e) => console.error(e))
+    .then(() => client.end())
 });
 
 // get book by book id
 router.get("/books/:id", (req, res) => {
+  client.connect()
   const bookId = req.params.id;
   client
     .query("SELECT * FROM books WHERE id=$1;", [bookId])
     .then((result) => res.json(result.rows))
-    .catch((e) => console.error(e));
+    .catch((e) => console.error(e))
+    .then(() => client.end())
 });
+
+// get book by word in title
+router.get("/books/title", (req, res) => {
+  client.connect()
+  const word = req.query.word;
+  client
+    .query("SELECT * FROM books WHERE title LIKE $%1%;", [word])
+    .then((result) => res.json(result.rows))
+    .catch((e) => console.error(e))
+    .then(() => client.end())
+});
+
 
 // add new book title
 router.post("/books/new", (req, res) => {
+  client.connect()
   const title = req.body.title;
   const language = req.body.language;
   // the authorId is not added to the books table
@@ -157,7 +170,8 @@ router.post("/books/new", (req, res) => {
   client
     .query("INSERT INTO books (title, language) VALUES ($1, $2);", [title, language])
     .then(() => res.send(`New book with title ${title} has been created.`))
-    .catch((e) => console.error(e));
+    .catch((e) => console.error(e))
+    .then(() => client.end())
 });
 
 // // edit author firstname/lastname/booktitle ??
