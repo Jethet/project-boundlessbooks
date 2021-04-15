@@ -134,7 +134,7 @@ router.get("/books", (req, res) => {
 router.get("/books/title", (req, res) => {
   const title = req.query.title;
   client
-    .query("SELECT * FROM books WHERE title LIKE $1;", [title])
+    .query("SELECT * FROM books WHERE title LIKE $%1%;", [title])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e));
 });
