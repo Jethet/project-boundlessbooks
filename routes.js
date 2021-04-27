@@ -153,7 +153,7 @@ router.get("/books/title", (req, res) => {
   client.connect()
   const word = req.query.word;
   client
-    .query("SELECT * FROM books WHERE title LIKE $%1%;", [word])
+    .query("SELECT * FROM books WHERE title LIKE $1;", ['%' + word + '%'])
     .then((result) => res.json(result.rows))
     .catch((e) => console.error(e))
     .then(() => client.end())
